@@ -1,24 +1,28 @@
 import React, { useState } from 'react';
 
 const SearchBar = ({ onSearch }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [query, setQuery] = useState('');
+
+  const handleChange = (event) => {
+    setQuery(event.target.value);
+  };
 
   const handleSearch = () => {
-    onSearch(searchTerm);
+    onSearch(query.toLowerCase());
   };
 
   return (
-    <div className="p-4 text-center">
+    <div className="flex justify-center p-4">
       <input
         type="text"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
+        value={query}
+        onChange={handleChange}
         placeholder="Search for Pokémon..."
-        className="border rounded p-2"
+        className="border border-gray-300 rounded-lg px-4 py-2 w-80"
       />
       <button
         onClick={handleSearch}
-        className="ml-2 bg-blue-500 text-white px-4 py-2 rounded"
+        className="ml-2 bg-blue-500 text-white px-4 py-2 rounded-lg"
       >
         Search
       </button>
